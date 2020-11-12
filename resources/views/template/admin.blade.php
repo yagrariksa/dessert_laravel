@@ -28,7 +28,7 @@
             <a href="/admin/add"><div class="btn text t-uppercase t-sm {{ ($tipe == 'add') ? 'active' : ''}}">Tambah Barang</div></a>
             <a href="/admin/order"><div class="btn text t-uppercase t-sm {{ ($tipe == 'order') ? 'active' : ''}}">Atur Order</div></a>
             <a href="/admin/other"><div class="btn text t-uppercase t-sm {{ ($tipe == 'other') ? 'active' : ''}}">Pengaturan Lain</div></a>
-            <a href="/admin/payment"><div class="btn text t-uppercase t-sm {{ ($tipe == 'payment') ? 'active' : ''}}">Pengaturan Pembayaran</div></a>
+            <a href="/admin/payment"><div class="btn text t-uppercase t-sm {{ ($tipe == 'payment') ? 'active' : ''}}">Rekening</div></a>
         </div>
         <div class="main-content">
             @yield('content')

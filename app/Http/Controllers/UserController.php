@@ -25,45 +25,10 @@ class UserController extends Controller
         ]);
     }
 
-    public function details($id)
-    {
-        $data = Barang::find($id);
-        $category = Category::where('category', $data->category)->first();
-        $opsi = Custom::where('parent_type', 'SUPER')->where('parent_name', $category->category)->get();
-        $category->opsi = $opsi;
-        foreach ($category->opsi as $o) {
-            $variasi = Custom::where('parent_type', 'CHILD')->where('parent_name', $o->id)->get();
-            $o->variasi = $variasi;
-        }
-        // dd($category);
-        // dd($data, $category);
-
-        return view('user.details', [
-            'data' => $data,
-            'category' => $category
-        ]);
-    }
-
     public function detailwithlivewire($id)
     {
         return view('user.detailproduct', [
             'ide' => $id,
-        ]);
-    }
-
-    public function customview($id)
-    {
-        $data = Barang::find($id);
-        $category = Category::where('category', $data->category)->first();
-        $opsi = Custom::where('parent_type', 'SUPER')->where('parent_name', $category->category)->get();
-        $category->opsi = $opsi;
-        foreach ($category->opsi as $o) {
-            $variasi = Custom::where('parent_type', 'CHILD')->where('parent_name', $o->id)->get();
-            $o->variasi = $variasi;
-        }
-        return view('user.customdetails', [
-            'data' => $data,
-            'category' => $category
         ]);
     }
 
@@ -213,14 +178,13 @@ class UserController extends Controller
         $client->save();
 
 
-        $metode = Pembayaran::find($request->metode);
         $transaksi = new Transaksi();
         $transaksi->client_id = $client->id;
-        $transaksi->payment = $metode->metode;
+        $transaksi->payment = $request->metode;
         $transaksi->status = 'menunggu pembayaran';
         $transaksi->total = Session::get('cart')->total;
         $transaksi->totalqty = Session::get('cart')->qty;
-        $kode = 'E0thUcnR';
+        $kode = $this->getName(8);
         while (Transaksi::where('kode', $kode)->first() != null) {
             $kode = $this->getName(8);
         }
@@ -243,7 +207,11 @@ class UserController extends Controller
 
         Session::forget('cart');
 
-        dd($client, $transaksi, $datastore, Session::get('cart', 'kosong lur'));
+        // dd($client, $transaksi, $datastore, Session::get('cart', 'kosong lur'));
+        return view('user.payment', [
+            'kode' => $transaksi->kode,
+            'payment' => $transaksi->payment,
+        ]);
     }
 
     public function getName($n)

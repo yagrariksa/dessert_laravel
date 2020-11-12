@@ -53,7 +53,7 @@
                         <select name="metode" id="cars" required>
                             <option value="0">Pilih Metode : </option>
                             @foreach ($metode as $m)
-                            <option value="{{$m->id}}">{{$m->metode}}</option>
+                            <option value="{{$m->metode}} : {{$m->rekening}} a.n {{$m->atasnama}}">{{$m->metode}}</option>
                             @endforeach
                         </select>
                     </div>

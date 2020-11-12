@@ -136,14 +136,9 @@ class AdminController extends Controller
 
     public function order()
     {
-        $data = Transaksi::latest()->get();
-        foreach ($data as $d) {
-            $client = Client::find($d->client_id);
-            $d->namaewa = $client->name;
-        }
+
         return view('admin.aturorder', [
             'tipe' => 'order',
-            'data' => $data,
         ]);
     }
 

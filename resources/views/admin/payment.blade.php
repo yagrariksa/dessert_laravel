@@ -7,6 +7,11 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/selectform.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin/admintambah.css') }}">
+    <style>
+        .container{
+            width: 90%;
+        }
+    </style>
 @endsection
 @section('content')
 @livewire('atur-pembayaran')

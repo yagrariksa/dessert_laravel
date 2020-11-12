@@ -19,7 +19,7 @@
                 Kode Transaksi Anda
             </div>
             <div class="kode-transaksi">
-                ru12asd3te
+                {{$kode}}
             </div>
         </div>
         <div class="payment">
@@ -30,12 +30,12 @@
                 segera lakukan pembayaran menggunakan metode yang sudah anda pilih
             </div>
             <div class="payment-info">
-                OVO : 081239435123
+                {{$payment}}
             </div>
         </div>
-        <div class="btn btn-direct">
+        {{-- <div class="btn btn-direct">
             Lihat Detil Order
-        </div>
+        </div> --}}
     </div>
 
 

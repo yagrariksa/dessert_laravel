@@ -9,6 +9,7 @@ class AturPembayaran extends Component
 {
     public $payname;
     public $paycode;
+    public $payowner;
     public $editmode = false;
 
     public function render()
@@ -24,6 +25,7 @@ class AturPembayaran extends Component
         $data = new Pembayaran();
         $data->metode = $this->payname;
         $data->rekening = $this->paycode;
+        $data->atasnama = $this->payowner;
         $data->save();
 
         $this->clearform();
@@ -33,6 +35,7 @@ class AturPembayaran extends Component
     {
         $this->payname = null;
         $this->paycode = null;
+        $this->payowner = null;
     }
 
     public function edit($id)
@@ -40,6 +43,7 @@ class AturPembayaran extends Component
         $data = Pembayaran::find($id);
         $this->payname = $data->metode;
         $this->paycode = $data->rekening;
+        $this->payowner = $data->atasnama;
         $this->editmode = $id;
     }
 
@@ -48,6 +52,7 @@ class AturPembayaran extends Component
         $data = Pembayaran::find($this->editmode);
         $data->metode = $this->payname;
         $data->rekening = $this->paycode;
+        $data->atasnama = $this->payowner;
         $data->save();
 
         $this->clearform();
