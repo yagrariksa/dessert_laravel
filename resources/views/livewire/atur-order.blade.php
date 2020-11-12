@@ -1,6 +1,19 @@
 <div>
 
     @if (!$detail)
+        <h3>Set Filter</h3>
+        <select style="padding: 5px; margin-bottom: 5px;" wire:model='filter' name="" id="">
+            <option value="">Pilih Filter</option>
+            <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+            <option value="Sedang Diporses">Sedang Diporses</option>
+            <option value="Transaksi Selesai">Transaksi Selesai</option>
+        </select>
+        <div class=""><button style="padding: 5px; " wire:click='filter'>Set Filter</button>
+        @if ($filterfix != null)
+        <button style="padding: 5px; margin-left: 10px; " wire:click='resetfilter'>Reset Filter</button>
+        @endif
+        </div>
+        <br>
         <table>
             <thead>
                 <tr>
@@ -29,6 +42,21 @@
 
         <h5 style="cursor: pointer; padding: 10px; background-color: #c1c1c1; width: fit-content;" wire:click='back'>kembali</h5> <br>
     
+        @if ($ubahstatus)
+
+        <div class="label">Ubah Status Pembayaran</div>
+        <div class="info-user">
+            <select wire:model='statusbayar' id="">
+                <option value="Menunggu Pembayaran">Menunggu Pembayaran</option>
+                <option value="Sedang Diporses">Sedang Diporses</option>
+                <option value="Transaksi Selesai">Transaksi Selesai</option>
+            </select>
+            
+        </div>
+        <div class=""><button wire:click='postubah'>Konfirmasi Ubah</button></div>
+        @else
+
+
         <div id="container">
             <div class="col main-info">
                 <h1>Kode Transaksi</h1>
@@ -79,6 +107,8 @@
                     <div class="form-group">
                         <div class="label">Status Pembayaran</div>
                         <div class="info-user">{{$transaksi->status}}</div>
+                        <div class=""><button wire:click='ubah'>UBAH</button></div>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -125,5 +155,7 @@
                 </div>
             </div>
         </div>
+        @endif
+
     @endif
 </div>

@@ -40,4 +40,9 @@ class UserMyOrder extends Component
         }
         $this->kode = null;
     }
+
+    public function search()
+    {
+        $this->detail = false;
+    }
 }

@@ -15,9 +15,19 @@ class AturOrder extends Component
     public $client = null;
     public $barang = null;
 
+    public $ubahstatus = false;
+    public $statusbayar;
+
+    public $filter;
+    public $filterfix = null;
+
     public function render()
     {
-        $data = Transaksi::latest()->get();
+        if ($this->filterfix != null) {
+            $data = Transaksi::where('status', $this->filterfix)->get();
+        } else {
+            $data = Transaksi::latest()->get();
+        }
         foreach ($data as $d) {
             $client = Client::find($d->client_id);
             $d->namaewa = $client->name;
@@ -25,6 +35,17 @@ class AturOrder extends Component
         return view('livewire.atur-order', [
             'data' => $data,
         ]);
+    }
+
+    public function filter()
+    {
+        $this->filterfix = $this->filter;
+    }
+
+    public function resetfilter()
+    {
+        $this->filter = null;
+        $this->filterfix = null;
     }
 
     public function detail($id)
@@ -41,5 +62,22 @@ class AturOrder extends Component
     public function back()
     {
         $this->detail = false;
+    }
+
+    public function ubah()
+    {
+        $this->ubahstatus = true;
+        $this->statusbayar = $this->transaksi->status;
+    }
+
+    public function postubah()
+    {
+        $transaksi = Transaksi::find($this->transaksi->id);
+        $transaksi->status = $this->statusbayar;
+        $transaksi->save();
+
+        $this->ubahstatus = false;
+        $this->statusbayar = null;
+        $this->detail($transaksi->id);
     }
 }

@@ -21,10 +21,12 @@
             <input type="text" placeholder="Search">
         </div>
         <div class="keranjang">
-            <h5 style="margin-right: 5px; padding:3px; border-radius: 10px; background-color: black; color: white; cursor:default;"> 
-                {{(Session::has('cart') ? Session::get('cart')->qty : '')}}
-                {{-- {{dd(Session::get('cart','kosong'))}} --}}
-            </h5>
+            @if (Session::has('cart'))
+            <h5 style="margin-right: 5px; padding:3px; border-radius: 10px; background-color: black; color: white; cursor:default; text-align: center"> 
+                    {{Session::get('cart')->qty}}
+                    {{-- {{dd(Session::get('cart','kosong'))}} --}}
+                </h5>
+            @endif
             <a href="/cart">
                 <img src="{{ asset('img/keranjang.png') }}" alt="">
             </a>
@@ -36,7 +38,7 @@
         <a href="/lowcal">Low Calorie</a>
         <a href="/custom">Custom Dessert</a>
         <a href="#">Payment Confirmation</a>
-        <a href="order">My Order</a>
+        <a href="/order">My Order</a>
     </div>
 
 

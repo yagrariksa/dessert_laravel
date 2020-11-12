@@ -3,16 +3,17 @@
 
     
     @if (!$detail)
-        <div class="row search">
+        <div class="row search" style="flex-direction: row">
             <input type="text" wire:model='kodok' placeholder="Masukkan Kode Transaksi">
-            <button wire:click='detail'> CEK </button>
+            <button wire:click='detail'> CEK </button> <br>
             <h1>{{$error}}</h1>
         </div>
-    @else
+        @else
         <div class="container">
             <div class="col main-info">
                 <h1>Kode Transaksi</h1>
                 <div class="info">{{$transaksi->kode}}</div>
+                <button style="width: fit-content" wire:click='search'>CARI LAIN</button>
             </div>
             <div class="col main-info">
                 <h1>Status Pesanan</h1>
