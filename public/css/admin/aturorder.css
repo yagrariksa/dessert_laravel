@@ -1,0 +1,66 @@
+.wide-container {
+    width: 95%;
+    grid-template-columns: 1fr 5fr;
+}
+
+table,
+th,
+td {
+    border: 1px solid;
+    border-color: transparent transparent black transparent;
+
+}
+
+th,
+td {
+    padding: 5px 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+th:nth-child(2n) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+th.kode {
+    width: 15%;
+}
+
+th.nama {
+    width: 30%;
+}
+
+th.status {
+    width: 30%;
+}
+
+th.total {
+    width: 15%;
+}
+
+th.aksi {
+    width: 10%;
+}
+
+td .btn {
+    background-color: rgb(154, 255, 154);
+    padding: 5px 10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+td .btn:hover {
+    background-color: rgb(81, 241, 81);
+}
+
+tbody tr:nth-child(2n) {
+    background-color: rgba(0, 233, 225, 0.1);
+}
