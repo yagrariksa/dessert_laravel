@@ -44,7 +44,7 @@
         Checkout
     </a>
     @else
-    <h1>keranjang anda masih kosong</h1>
+    <h1 style="align-self: center; margin: 50px 0;">keranjang anda masih kosong</h1>
     @endif
     
 </div>

@@ -38,6 +38,9 @@
                 @endforeach
             </tbody>
         </table>
+        <div style="height: 100px; overflow:hidden;"> 
+            {{$data->links()}}
+        </div>
     @else
 
         <h5 style="cursor: pointer; padding: 10px; background-color: #c1c1c1; width: fit-content;" wire:click='back'>kembali</h5> <br>

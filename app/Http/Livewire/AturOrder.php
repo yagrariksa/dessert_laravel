@@ -24,9 +24,9 @@ class AturOrder extends Component
     public function render()
     {
         if ($this->filterfix != null) {
-            $data = Transaksi::where('status', $this->filterfix)->get();
+            $data = Transaksi::where('status', $this->filterfix)->paginate(4);
         } else {
-            $data = Transaksi::latest()->get();
+            $data = Transaksi::latest()->paginate(4);
         }
         foreach ($data as $d) {
             $client = Client::find($d->client_id);
